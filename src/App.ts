@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import MqttServer from './mqtt-server';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -14,6 +15,7 @@ class App {
     this.express = express();
     this.middleware();
     this.routes();
+    MqttServer.init();
   }
 
   // Configure Express middleware.
