@@ -1,8 +1,8 @@
 let dbconfig = {
     //using ascoltatore
     type: 'mongo',
-    url: 'mongodb://localhost:27017/mqtt',
-    pubsubCollection: 'ascoltatori',
+    url: 'mongodb://admin:iot-gateway@localhost:27017/',
+    pubsubCollection: 'mqtt',
     mongo: {}
 };
 

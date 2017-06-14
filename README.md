@@ -7,7 +7,7 @@ Gateway para iteração com dispositivos de IoT desenvolvido em node.js e Typesc
 + [Jest][jest] unit testing and code coverage,
 + Type definitions for Node.js v6.x (LTS) and Jest,
 
-## Available scripts
+## Scripts disponíveis
 
 + `start` - Inicia o servidor do express.js
 + `clean` - remove todos os caches e arquivos tranpilados
@@ -16,6 +16,12 @@ Gateway para iteração com dispositivos de IoT desenvolvido em node.js e Typesc
 + `lint` - Executa um lint dos arquivos e dos testes
 + `test` - Executa os testes
 + `test:watch` - Inicia um watch que executa os testes sempre que algo for modificado
+
+## Dependencias
+MongoDb, pode ser baixado através de imagem docker e executado da seguinte forma:
+
+docker pull tutum/mongodb
+docker run -d -p 27017:27017 -p 28017:28017 -e MONGODB_PASS="iot-gateway" tutum/mongodb
 
 ## License
 MIT License. [LICENSE](https://github.com/jsynowiec/node-typescript-boilerplate/blob/master/LICENSE).
