@@ -42,6 +42,8 @@ class App {
     router.get('/', (req, res) => {
       res.render('home');
     });
+    console.log(__dirname);
+    this.express.use('/scripts/bootstrap/', express.static(__dirname + '/../../node_modules/bootstrap/dist/'));
     this.express.use('/', router);
   }
 
