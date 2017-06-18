@@ -3,6 +3,7 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import MqttServer from './mqtt-server';
+import * as ExpressHandlebars from 'express-handlebars';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -14,6 +15,7 @@ class App {
   constructor() {
     this.express = express();
     this.middleware();
+    this.templateEngine();
     this.routes();
     MqttServer.init();
   }
@@ -32,12 +34,20 @@ class App {
      * API endpoints */
     let router = express.Router();
     // placeholder route handler
-    router.get('/', (req, res, next) => {
+    /*router.get('/', (req, res, next) => {
       res.json({
         message: 'Hello World!'
       });
+    });*/
+    router.get('/', (req, res) => {
+      res.render('home');
     });
     this.express.use('/', router);
+  }
+
+  private templateEngine() {
+    this.express.engine('handlebars', ExpressHandlebars({defaultLayout: 'main'}));
+    this.express.set('view engine', 'handlebars');
   }
 
 }
