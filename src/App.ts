@@ -3,19 +3,22 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import MqttServer from './mqtt-server';
+import ClientApi from './api/ClientApi';
 
 // Creates and configures an ExpressJS web server.
 class App {
 
   // ref to Express instance
   public express: express.Application;
+  public clientApi: ClientApi;
 
   //Run configuration methods on the Express instance.
   constructor() {
     this.express = express();
     this.middleware();
+    this.clientApi = new ClientApi();
     this.routes();
-    MqttServer.init();
+    //MqttServer.init();
   }
 
   // Configure Express middleware.
@@ -33,9 +36,13 @@ class App {
     let router = express.Router();
     // placeholder route handler
     router.get('/', (req, res, next) => {
-      res.json({
-        message: 'Hello World!'
-      });
+      this.clientApi.listar(res);
+    });
+    router.post('/', (req, res, next) => {
+      this.clientApi.salvar(req, res);
+    });
+    router.put('/', (req, res, next) => {
+      this.clientApi.editar(req, res);
     });
     this.express.use('/', router);
   }
