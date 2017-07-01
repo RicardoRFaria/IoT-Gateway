@@ -4,6 +4,9 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import MqttServer from './mqtt-server';
 import ClientApi from './api/ClientApi';
+import MensageriaApi from './api/MensageriaApi';
+import * as mongoose from 'mongoose';
+import dbconfig from './config/mongoose';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -18,7 +21,12 @@ class App {
     this.middleware();
     this.clientApi = new ClientApi();
     this.routes();
-    //MqttServer.init();
+    MqttServer.init(new MensageriaApi());
+    mongoose.connect(dbconfig.url, dbconfig.options, function (error) {
+      if (error) {
+        console.error('Falha ao se conectar com o mongodb', error);
+      }
+    });
   }
 
   // Configure Express middleware.

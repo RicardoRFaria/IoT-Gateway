@@ -7,6 +7,11 @@ class OperacaoEquals extends Operacao {
 
     private valor: any;
 
+    constructor(valorEquals: any) {
+        super();
+        this.valor = valorEquals;
+    }
+
     /**
      * Avalia se o valor recebido bate com o previamente cadastrado
      * 

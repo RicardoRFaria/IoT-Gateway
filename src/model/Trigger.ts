@@ -11,7 +11,7 @@ class Trigger {
     public operacao: Operacao;
 
     constructor() {
-
+        this.eventosRelacionados = [];
     }
 }
 
