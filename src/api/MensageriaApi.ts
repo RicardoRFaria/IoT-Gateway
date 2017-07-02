@@ -1,5 +1,5 @@
 import Trigger from '../model/Trigger';
-import OperacaoEquals from '../model/operacoes/OperacaoEquals';
+import Operacao from '../model/operacoes/Operacao';
 import Evento from '../model/Evento';
 import EventoApi from './EventoApi';
 
@@ -33,8 +33,9 @@ class MensageriaApi {
 
     private getPipelineDeAcoes(clientId: String) : Array<Trigger> {
         let trigger = new Trigger();
-        let operacaoEquals =  new OperacaoEquals('true');
-        trigger.operacao = operacaoEquals;
+        let operacao =  new Operacao();
+        operacao.valor = 'true';
+        trigger.operacao = operacao;
 
         let evento = new Evento();
         evento.id = 'sms';
