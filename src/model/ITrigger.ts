@@ -1,7 +1,9 @@
+import Evento from './Evento';
+import Operacao from './Operacao';
+
 interface ITrigger {
-    id: String;
-    nome: String;
-    descricao: String;
+    eventosRelacionados: Array<Evento>;
+    operacao: Operacao;
 };
 
 export = ITrigger;

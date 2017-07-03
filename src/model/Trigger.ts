@@ -1,18 +1,13 @@
-import Evento from './Evento';
-import Operacao from './Operacao';
+import mongoose = require("mongoose");
+import ITrigger = require("./ITrigger");
+import TriggerSchema = require('./TriggerSchema');
+
+interface ITriggerModel extends ITrigger, mongoose.Document { }
 
 /**
  * Modela o registro de uma trigger, onde avaliamos um valor, e verificamos se ele esta em algum range ou é igual a algo
  * para acionar a ação atrelada
  */
-class Trigger {
-
-    public eventosRelacionados: Array<Evento>;
-    public operacao: Operacao;
-
-    constructor() {
-        this.eventosRelacionados = [];
-    }
-}
+var Trigger = mongoose.model<ITriggerModel>("Trigger", TriggerSchema);
 
 export default Trigger;
