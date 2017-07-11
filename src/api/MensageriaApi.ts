@@ -4,6 +4,8 @@ import Evento from '../model/Evento';
 import TIPO_OPERACAO from '../model/TIPO_OPERACAO';
 import EventoApi from './EventoApi';
 
+import MotorDeOperacoes from '../acoes/MotorDeOperacoes';
+
 class MensageriaApi {
 
     private eventoApi: EventoApi;
@@ -18,7 +20,9 @@ class MensageriaApi {
             console.log('Mensagem recebida de um client sem ações configuradas, cliend id: ' + clientId);
         }
         pipeline.forEach(trigger => {
-            let prossegue = trigger.operacao.prossegue(conteudo);
+            console.log('TRIGGER')
+            console.log(trigger);
+            let prossegue = MotorDeOperacoes.prossegue(trigger, conteudo);
             if (prossegue) {
                 console.info('Evento atendido, prossegue.');
                 trigger.eventosRelacionados.forEach(eventoRelacionado => {
@@ -35,17 +39,34 @@ class MensageriaApi {
     }
 
     private getPipelineDeAcoes(clientId: String) : Array<Trigger> {
-        let trigger = new Trigger();
-        let operacao =  new Operacao();
-        operacao.tipo = TIPO_OPERACAO.EQUALS;
-        operacao.valor = 'true';
-        trigger.operacao = operacao;
+        let operacao =  new Operacao({
+            tipo: TIPO_OPERACAO.EQUALS,
+            valor: 'true'
+        });
 
-        let evento = new Evento();
-        evento.id = 'sms';
-        evento.nome = 'Envio de SMS';
-        evento.descricao = 'Envia um sms para o numero 62 982081739';
-        trigger.eventosRelacionados.push(evento)
+        let evento = new Evento({
+            id: 'sms',
+            nome: 'Envio de SMS',
+            descricao: 'Envia um sms para o numero 62 982081739'
+        });
+        let eventosRelacionados = [evento];
+        let trigger = new Trigger({
+            operacao: operacao,
+            eventosRelacionados: eventosRelacionados
+        });
+        /*trigger.save(function (err, data) {
+            console.log(err);
+            console.log(data);
+            console.log('Desorientação');
+        });*/
+        Trigger.create({
+            operacao: operacao,
+            eventosRelacionados: eventosRelacionados
+        }, function (err, data) {
+            console.log(err);
+            console.log(data);
+            console.log('Desorientação');
+        });
         return [trigger];
     }
 
