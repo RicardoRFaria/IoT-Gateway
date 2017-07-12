@@ -1,4 +1,4 @@
-import Evento from '../model/Evento';
+import IEvento from '../model/IEvento';
 import NexmoSMSApi from '../externalapi/NexmoSMSApi';
 
 class EventoApi {
@@ -9,7 +9,7 @@ class EventoApi {
         this.smsApi = new NexmoSMSApi();
     }
 
-    public executarEvento(evento: Evento) {
+    public executarEvento(evento: IEvento) {
         if (evento.id == 'sms') {
             this.smsApi.enviarSMS('Evento atendido');
         }

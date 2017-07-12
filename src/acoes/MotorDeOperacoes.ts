@@ -1,5 +1,5 @@
 import TIPO_OPERACAO from '../model/TIPO_OPERACAO';
-import Operacao from '../model/Operacao';
+import IOperacao from '../model/IOperacao';
 
 class MotorDeOperacoes {
 
@@ -10,8 +10,8 @@ class MotorDeOperacoes {
      * @param valor qualquer valor a ser avaliado
      * @return boolean informando se a operação se a operação pode prosseguir
      */
-    public prossegue (operacao: Operacao, valor: any) {
-        console.log('prossegue atingido');
+    public prossegue (operacao: IOperacao, valor: any) {
+        console.log('Motor de operações atingido');
         console.log('tipo: ' + operacao.tipo);
         console.log('valor: ' + operacao.valor);
         if (operacao.tipo === TIPO_OPERACAO.EQUALS) {

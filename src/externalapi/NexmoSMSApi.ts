@@ -12,7 +12,7 @@ class EventoApi {
     }
 
     public enviarSMS(texto: String) {
-        console.log('Enviando mensagem');
+        console.log('Enviando SMS para o numero: ' + NUMERO_DESTINO + ' com o texto: ' + texto);
         nexmo.message.sendSms(
             VIRTUAL_NUMBER, NUMERO_DESTINO, texto,
             (err, responseData) => {

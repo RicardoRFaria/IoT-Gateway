@@ -1,4 +1,4 @@
-import Trigger from './Trigger';
+import ITrigger from './ITrigger';
 
 /**
  * Classe que modela um dispositivo, com o seu identificado e sua relação de eventos,
@@ -8,7 +8,7 @@ class Dispositivo {
 
     public id: Number;
     public mqttClientId: String;
-    public triggers: Array<Trigger>;
+    public triggers: Array<ITrigger>;
     public ativo: boolean;
 
     constructor() {

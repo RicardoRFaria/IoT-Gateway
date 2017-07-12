@@ -1,6 +1,6 @@
 import mongoose = require("mongoose");
-import ITrigger = require("./ITrigger");
-import TriggerSchema = require('./TriggerSchema');
+import ITrigger from './ITrigger';
+import TriggerSchema from './TriggerSchema';
 
 interface ITriggerModel extends ITrigger, mongoose.Document { }
 

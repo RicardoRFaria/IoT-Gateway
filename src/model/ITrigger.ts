@@ -1,9 +1,9 @@
-import Evento from './Evento';
-import Operacao from './Operacao';
+import IEvento from './IEvento';
+import IOperacao from './IOperacao';
 
 interface ITrigger {
-    eventosRelacionados: Array<Evento>;
-    operacao: Operacao;
+    eventosRelacionados: Array<IEvento>;
+    operacao: IOperacao;
 };
 
 export = ITrigger;
