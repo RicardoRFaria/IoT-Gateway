@@ -3,7 +3,8 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import MqttServer from './mqtt-server';
-import ClientApi from './api/ClientApi';
+import DispositivoApi from './api/DispositivoApi';
+import TriggerApi from './api/TriggerApi';
 import MensageriaApi from './api/MensageriaApi';
 import * as mongoose from 'mongoose';
 import dbconfig from './config/mongoose';
@@ -11,15 +12,15 @@ import dbconfig from './config/mongoose';
 // Creates and configures an ExpressJS web server.
 class App {
 
-  // ref to Express instance
-  public express: express.Application;
-  public clientApi: ClientApi;
-
-  //Run configuration methods on the Express instance.
+  private express: express.Application;
+  private dispositivoApi: DispositivoApi;
+  private triggerApi: TriggerApi;
+ 
   constructor() {
     this.express = express();
     this.middleware();
-    this.clientApi = new ClientApi();
+    this.dispositivoApi = new DispositivoApi();
+    this.triggerApi = new TriggerApi();
     this.routes();
     MqttServer.init(new MensageriaApi());
     mongoose.connect(dbconfig.url, dbconfig.options, function (error) {
@@ -43,15 +44,17 @@ class App {
      * API endpoints */
     let router = express.Router();
     // placeholder route handler
-    router.get('/', (req, res, next) => {
-      this.clientApi.listar(res);
+    router.get('/dispositivo', (req, res, next) => {
+      this.dispositivoApi.listar(res);
     });
-    router.post('/', (req, res, next) => {
-      this.clientApi.salvar(req, res);
+    router.post('/dispositivo', this.dispositivoApi.salvar);
+    router.put('/dispositivo', this.dispositivoApi.editar);
+
+    router.get('/trigger', (req, res, next) => {
+      this.triggerApi.listar(res);
     });
-    router.put('/', (req, res, next) => {
-      this.clientApi.editar(req, res);
-    });
+    router.post('/trigger', this.triggerApi.salvar);
+    router.put('/trigger', this.triggerApi.editar);
     this.express.use('/', router);
   }
 

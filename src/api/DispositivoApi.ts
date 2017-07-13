@@ -1,7 +1,7 @@
 import Dispositivo from '../model/Dispostivo';
 import DispositivoService from '../service/DispositivoService';
 
-class ClientApi {
+class DispositivoApi {
 
     private dispositivoService: DispositivoService;
 
@@ -24,4 +24,4 @@ class ClientApi {
     }
 }
 
-export default ClientApi;
+export default DispositivoApi;
