@@ -57,8 +57,10 @@ class App {
     router.put('/trigger', this.triggerApi.editar);
 
     this.express.use('/scripts/bootstrap/', express.static(__dirname + '/../../node_modules/bootstrap/dist/'));
-    this.express.use('/web', express.static(__dirname + '/../../static'));
-    this.express.use('/', router);
+    this.express.use('/scripts/angular/', express.static(__dirname + '/../../node_modules/angular/'));
+    this.express.use('/scripts/angular-ui-router/', express.static(__dirname + '/../../node_modules/angular-ui-router/release'));
+    this.express.use('/', express.static(__dirname + '/../../static'));
+    this.express.use('/api', router);
   }
 
 }

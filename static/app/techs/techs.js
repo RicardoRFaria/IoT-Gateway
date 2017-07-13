@@ -5,7 +5,8 @@ angular
     controller: TechsController
   });
 
-/** @ngInject */
+TechsController.$inject = ['$http'];
+
 function TechsController($http) {
   var vm = this;
 
