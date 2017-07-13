@@ -55,6 +55,9 @@ class App {
     });
     router.post('/trigger', this.triggerApi.salvar);
     router.put('/trigger', this.triggerApi.editar);
+
+    this.express.use('/scripts/bootstrap/', express.static(__dirname + '/../../node_modules/bootstrap/dist/'));
+    this.express.use('/web', express.static(__dirname + '/../../static'));
     this.express.use('/', router);
   }
 
