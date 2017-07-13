@@ -1,6 +1,9 @@
 import Trigger from '../model/Trigger';
 import TriggerListagemDTO from '../dto/TriggerListagemDTO';
 
+/**
+ * Controller responsavel por expor e executar acoes para a Trigger e seus subdocumentos
+ */
 class TriggerApi {
 
     constructor() {
@@ -10,6 +13,7 @@ class TriggerApi {
     public listar(res: any): void {
         Trigger.find({}, function (err, triggers: Array<Trigger>) {
             if (err) {
+                res.status(500);
                 res.send('Falha ao listar as triggers', err);
                 return;
             }
@@ -22,13 +26,48 @@ class TriggerApi {
     }
 
     public salvar(req: any, res: any): void {
-        let dispositivo = JSON.parse(req.body);
-        res.json(dispositivo);
+        // Executar validação
+        let trigger = JSON.parse(req.body);
+        let triggerPersistencia = new Trigger(trigger);
+        triggerPersistencia.save(function (err, resultado) {
+            if (err) {
+                res.status(500);
+                res.send('Falha ao persistir trigger', err);
+                return;
+            }
+            res.json(resultado);
+        });
     }
 
     public editar(req: any, res: any): void {
-        let dispositivo = JSON.parse(req.body);
-        res.json(dispositivo);
+        // Executar validação
+        let trigger = JSON.parse(req.body);
+        let id = trigger._id;
+        if (!id) {
+            res.status(400);
+            res.send('Trigger nao existe.');
+            return;
+        }
+        Trigger.findById(id, function (err, triggerCarregada: Trigger) {
+            if (err) {
+                res.status(500);
+                res.send('Falha ao editar trigger', err);
+                return;
+            }
+            
+            triggerCarregada.nome = trigger.nome;
+            triggerCarregada.eventosRelacionados = trigger.eventosRelacionados;
+            triggerCarregada.operacao = trigger.operacao;
+
+            triggerCarregada.save(function (err, triggerAtualizada) {
+                if (err) {
+                    res.status(500);
+                    res.send('Falha ao persistir atualização da trigger', err);
+                    return;
+                }
+                res.send(triggerAtualizada);
+            });
+        });
     }
 }
 

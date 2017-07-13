@@ -1,0 +1,14 @@
+{  
+    "nome" : "Nome trigger",
+    "operacao":{  
+        "tipo":2,
+        "valor":"true"
+    },
+    "eventosRelacionados":[  
+        {  
+            "id":"sms",
+            "nome":"Envio de SMS",
+            "descricao":"Envia um sms para o numero 62 982081739"
+        }
+    ]
+}
