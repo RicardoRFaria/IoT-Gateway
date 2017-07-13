@@ -1,0 +1,12 @@
+[
+    {  
+        "id" : 1,
+        "nome" : "Envio de email",
+        "quantidadeEventosRelacionados": 1
+    },
+    {  
+        "id" : 2,
+        "nome" : "Envio de SMS",
+        "quantidadeEventosRelacionados": 3
+    }
+]

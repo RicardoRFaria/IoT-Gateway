@@ -11,5 +11,10 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('app', {
       url: '/',
       component: 'app'
+    })
+    .state('app.triggers', {
+      url: '/triggersList',
+      component: 'triggersList'
     });
+
 }

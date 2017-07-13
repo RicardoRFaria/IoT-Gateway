@@ -1,0 +1,15 @@
+<div class="techs-container">
+    <h2 class="techs-h2">
+        Lista de triggers existentes
+    </h2>
+    <table class="table table-bordered">
+        <tr>
+            <th>Nome</th>
+            <th>Quantidade de eventos relacionados</th>
+        </tr>
+        <tr ng-repeat="trigger in $ctrl.triggers">
+            <td>{{trigger.nome}}</td>
+            <td>{{trigger.quantidadeEventosRelacionados}}</td>
+        </tr>
+    </table>
+</div>
