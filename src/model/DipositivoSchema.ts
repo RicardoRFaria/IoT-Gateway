@@ -1,8 +1,9 @@
 import mongoose = require("mongoose");
 
 var dispositivoSchema = new mongoose.Schema({
+    nome: String,
     mqttClientId: String,
-    idEvento: String,
+    idTrigger: String,
     ativo: Boolean
 });
 

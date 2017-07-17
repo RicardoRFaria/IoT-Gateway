@@ -1,7 +1,7 @@
 angular
   .module('app')
-  .component('triggersList', {
-    templateUrl: 'app/triggers/triggersList.html',
+  .component('editTrigger', {
+    templateUrl: 'app/triggers/editTrigger.html',
     controller: EditTrigger
   });
 

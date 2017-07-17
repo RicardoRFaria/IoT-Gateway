@@ -1,15 +1,23 @@
-<div class="techs-container">
-    <h2 class="techs-h2">
-        Lista de triggers existentes
-    </h2>
-    <table class="table table-bordered">
+<div>
+    <div class="form-group right">
+        <button class="btn btn-success" type="button" ui-sref="app.editTriggers">
+            <i class="fa fa-plus"></i> Criar nova trigger
+        </button>
+    </div>
+    <table class="table table-stripped">
         <tr>
-            <th>Nome</th>
-            <th>Quantidade de eventos relacionados</th>
+            <th class="text-center">Nome</th>
+            <th class="text-center">Quantidade de eventos relacionados</th>
+            <th></th>
         </tr>
         <tr ng-repeat="trigger in $ctrl.triggers">
-            <td>{{trigger.nome}}</td>
-            <td>{{trigger.quantidadeEventosRelacionados}}</td>
+            <td class="text-center">{{trigger.nome}}</td>
+            <td class="text-center">{{trigger.quantidadeEventosRelacionados}}</td>
+            <td class="text-center">
+                <button type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-pencil"></span> Editar 
+                </button>
+            </td>
         </tr>
     </table>
 </div>

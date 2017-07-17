@@ -9,13 +9,13 @@ Gateway para iteração com dispositivos de IoT desenvolvido em node.js e Typesc
 
 ## Scripts disponíveis
 
-+ `start` - Inicia o servidor do express.js
-+ `clean` - remove todos os caches e arquivos tranpilados
-+ `build` - Transpile de TypeScript para ES6,
-+ `watch` - Inicia um watch que efetua o transpile automatico de coisas alteradas
-+ `lint` - Executa um lint dos arquivos e dos testes
-+ `test` - Executa os testes
-+ `test:watch` - Inicia um watch que executa os testes sempre que algo for modificado
++ `npm start` - Inicia o servidor do express.js
++ `npm clean` - remove todos os caches e arquivos tranpilados
++ `npm build` - Transpile de TypeScript para ES6,
++ `npm run watch` - Inicia um watch que efetua o transpile automatico de coisas alteradas
++ `npm lint` - Executa um lint dos arquivos e dos testes
++ `npm test` - Executa os testes
++ `npm test:watch` - Inicia um watch que executa os testes sempre que algo for modificado
 
 ## Dependencias
 MongoDb, pode ser baixado através de imagem docker e executado da seguinte forma:

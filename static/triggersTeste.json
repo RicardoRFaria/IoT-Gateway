@@ -1,11 +1,11 @@
 [
     {  
-        "id" : 1,
+        "_id": "idTriggerPersistidaNoMongo",
         "nome" : "Envio de email",
         "quantidadeEventosRelacionados": 1
     },
     {  
-        "id" : 2,
+        "_id": "idTriggerPersistidaNoMongo2",
         "nome" : "Envio de SMS",
         "quantidadeEventosRelacionados": 3
     }

@@ -1,6 +1,7 @@
 interface IDispositivo {
+    nome: String;
     mqttClientId: String;
-    idEvento: String;
+    idTrigger: String;
     ativo: Boolean;
 };
 

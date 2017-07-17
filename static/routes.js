@@ -4,7 +4,6 @@ angular
 
 /** @ngInject */
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
-  $locationProvider.html5Mode(true).hashPrefix('!');
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
@@ -12,9 +11,21 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/',
       component: 'app'
     })
-    .state('app.triggers', {
-      url: '/triggersList',
+    .state('app.triggersList', {
+      url: 'triggersList',
       component: 'triggersList'
+    })
+    .state('app.editTriggers', {
+      url: 'editTrigger',
+      component: 'editTrigger'
+    })
+    .state('app.dispositivosList', {
+      url: 'dispositivosList',
+      component: 'dispositivosList'
+    })
+    .state('app.editDispositivo', {
+      url: 'editDispositivo',
+      component: 'editDispositivo'
     });
 
 }
