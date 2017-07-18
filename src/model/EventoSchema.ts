@@ -1,9 +1,8 @@
 import mongoose = require("mongoose");
 
 var eventoSchema = new mongoose.Schema({
-    id: String,
     nome: String,
     descricao: String
-});
+}, { _id: false });
 
 export default eventoSchema;

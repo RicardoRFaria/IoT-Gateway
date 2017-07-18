@@ -1,3 +1,33 @@
-<div class="techs-container">
-    TESTE
-</div>
+<h1>Cadastro de Trigger</h1>
+<form novalidate class="simple-form">
+
+    <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" class="form-control" id="nome" ng-model="$ctrl.trigger.nome" 
+            required ng-class="$ctrl.trigger.nome.$invalid? 'has-error' : 'has-success'">
+    </div>
+
+    <div class="form-group">
+      <label for="selectTipoOperacao">Tipo de operação</label>
+      <select id="selectTipoOperacao" class="form-control" ng-model="$ctrl.trigger.operacao.tipo" required>
+        <option ng-repeat="operacao in $ctrl.opcoesOperacao" value="{{operacao.valor}}">{{operacao.descricao}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="selectTipoOperacao">Valor da operação</label>
+        <div class="input-group" ng-if="$ctrl.trigger.operacao.tipo == 1">
+            <span class="input-group-addon">Indo de</span>
+            <input type="number" class="form-control" aria-label="Valor inicial" ng-model="$ctrl.trigger.operacao.valorInicial"
+                ng-class="$ctrl.trigger.operacao.valorInicial.$invalid? 'has-error' : 'has-success'" required>
+            <span class="input-group-addon">Até</span>
+            <input type="number" class="form-control" aria-label="Valor final" ng-model="$ctrl.trigger.operacao.valorFinal"
+                ng-class="$ctrl.trigger.operacao.valorFinal.$invalid? 'has-error' : 'has-success'" required>
+        </div>
+        <input type="text" class="form-control" ng-if="$ctrl.trigger.operacao.tipo == 2" ng-model="$ctrl.trigger.operacao.valor"
+            ng-class="$ctrl.trigger.operacao.valor.$invalid? 'has-error' : 'has-success'" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary" ng-click="$ctrl.enviar()">Enviar</button>
+
+</form>

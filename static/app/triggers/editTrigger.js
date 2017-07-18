@@ -8,11 +8,21 @@ angular
 EditTrigger.$inject = ['$http'];
 
 function EditTrigger($http) {
-  var vm = this;
+  const vm = this;
+  preencherSelects();
 
-  $http
-    .get('triggersTeste.json')
-    .then(function (response) {
-      vm.triggers = response.data;
-    });
+  vm.trigger = new TriggerObject();
+
+  vm.enviar = function () {
+    console.log(vm.trigger);
+    $http.post('/api/trigger', JSON.stringify(vm.trigger));
+  }
+
+  function preencherSelects() {
+    vm.opcoesOperacao = [
+      {valor: '1', descricao: 'Range'},
+      {valor: '2', descricao: 'Igualdade'}
+    ]
+  }
+
 }

@@ -27,12 +27,12 @@ class TriggerApi {
 
     public salvar(req: any, res: any): void {
         // Executar validação
-        let trigger = JSON.parse(req.body);
+        let trigger = req.body;
+        delete trigger._id;
         let triggerPersistencia = new Trigger(trigger);
         triggerPersistencia.save(function (err, resultado) {
             if (err) {
-                res.status(500);
-                res.send('Falha ao persistir trigger', err);
+                res.status(500).send('Falha ao persistir trigger' + err);
                 return;
             }
             res.json(resultado);
@@ -41,17 +41,15 @@ class TriggerApi {
 
     public editar(req: any, res: any): void {
         // Executar validação
-        let trigger = JSON.parse(req.body);
+        let trigger = req.body;
         let id = trigger._id;
         if (!id) {
-            res.status(400);
-            res.send('Trigger nao existe.');
+            res.status(400).send('Trigger nao existe.');
             return;
         }
         Trigger.findById(id, function (err, triggerCarregada: Trigger) {
             if (err) {
-                res.status(500);
-                res.send('Falha ao editar trigger', err);
+                res.status(500).send('Falha ao editar trigger' + err);
                 return;
             }
             
@@ -61,8 +59,7 @@ class TriggerApi {
 
             triggerCarregada.save(function (err, triggerAtualizada) {
                 if (err) {
-                    res.status(500);
-                    res.send('Falha ao persistir atualização da trigger', err);
+                    res.status(500).send('Falha ao persistir atualização da trigger' + err);
                     return;
                 }
                 res.send(triggerAtualizada);

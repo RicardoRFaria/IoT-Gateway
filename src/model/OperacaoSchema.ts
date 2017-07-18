@@ -5,6 +5,6 @@ var OperacaoSchema = new mongoose.Schema({
     valor: String,
     valorInicial: Number,
     valorFinal: Number
-});
+}, { _id: false });
 
 export default OperacaoSchema;
