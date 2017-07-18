@@ -1,0 +1,27 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button id="btnFechar" type="button" class="close" ng-click="::vm.close()">&times;</button>
+
+        <div class="row center">
+            <i id="notificationIconClass" class="fa fa-5x" ng-class="::vm.iconClass"></i>
+
+            <h4>
+                <span id="notificationTitle" class="oobj-notification-modal-title" ng-bind-html="::vm.title"></span>
+                <i id="notificationTooltip" ng-show="::vm.tooltip" uib-tooltip="{{::vm.tooltip}}" tooltip-placement="left"
+                   class="fa fa-info-circle icon-info-medium-center"></i>
+            </h4>
+        </div>
+    </div>
+
+    <div class="modal-body">
+        <div class="row center">
+            <p id="notificationMsg" ng-bind-html="::vm.message"></p>
+        </div>
+    </div>
+
+    <div class="row center modal-footer">
+        <button id="notificationBtnOk" class="btn oobj-btn" ng-click="::vm.ok()" ng-class="::vm.btnClass">
+            <span>OK</span>
+        </button>
+    </div>
+</div>

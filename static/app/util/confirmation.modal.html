@@ -1,0 +1,26 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button id="confirmBtnX" type="button" class="close" ng-click="vm.cancelar()">&times;</button>
+
+        <div class="row center">
+            <h4><span id="confirmTitle" ng-bind="::vm.titulo"></span></h4>
+        </div>
+    </div>
+
+    <div class="modal-body">
+        <div class="col-md-12 center">
+            <span id="confirmTexto" ng-bind="::vm.texto"></span>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row center modal-footer">
+        <div class="row center">
+            <button id="confirmBtnCancelar" class="btn btn-default" ng-click="vm.cancelar()">Cancelar</button>
+            <button id="confirmBtnConfirmar" class="btn oobj-btn" ng-class="::vm.corDoBotao"
+                    ng-click="vm.acaoConfirmacao()">Confirmar</button>
+        </div>
+    </div>
+</div>

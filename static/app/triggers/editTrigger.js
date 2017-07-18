@@ -5,28 +5,25 @@ angular
     controller: TriggersList
   });
 
-TriggersList.$inject = ['TriggerService', '$stateParams'];
+TriggersList.$inject = ['TriggerService', '$stateParams', 'ModalUtil'];
 
-function TriggersList(TriggerService, $stateParams) {
+function TriggersList(TriggerService, $stateParams, ModalUtil) {
   const vm = this;
   preencherSelects();
   carregarOuCriarTrigger();
   
   vm.enviar = function () {
     TriggerService.salvar(vm.trigger).then(function (objetoSalvo) {
+      ModalUtil.msgSuccess('Trigger salva com sucesso!');
       vm.trigger = objetoSalvo;
-    }, function (falha) {
-      window.alert(falha);
-    });
+    }, ModalUtil.mostrarErroPadraoPromise);
   }
 
   function carregarOuCriarTrigger() {
     if ($stateParams.id) {
       TriggerService.get($stateParams.id).then(function (triggerExistente) {
         vm.trigger = triggerExistente;
-      }, function (falha) {
-        window.alert(falha);
-      });
+      }, ModalUtil.mostrarErroPadraoPromise);
     } else {
       vm.trigger = new TriggerObject();
     }

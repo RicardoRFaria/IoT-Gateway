@@ -23,7 +23,11 @@ function TriggerService($http, $q) {
 
     function salvar(trigger) {
         return $q(function(resolve, reject) {
-            $http.post('/api/trigger/', JSON.stringify(trigger))
+            let metodo = 'post';
+            if (trigger._id) {
+                metodo = 'put';
+            }
+            $http[metodo]('/api/trigger/', JSON.stringify(trigger))
                 .then(function (resultado) {
                     resolve(resultado.data);
                 }, function (falha) {
