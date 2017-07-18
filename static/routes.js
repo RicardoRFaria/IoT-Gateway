@@ -16,7 +16,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       component: 'triggersList'
     })
     .state('app.editTriggers', {
-      url: 'editTrigger',
+      url: 'editTrigger/?id',
       component: 'editTrigger'
     })
     .state('app.dispositivosList', {
@@ -24,7 +24,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       component: 'dispositivosList'
     })
     .state('app.editDispositivo', {
-      url: 'editDispositivo',
+      url: 'editDispositivo/?id',
       component: 'editDispositivo'
     });
 

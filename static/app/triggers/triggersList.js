@@ -2,17 +2,21 @@ angular
   .module('app')
   .component('triggersList', {
     templateUrl: 'app/triggers/triggersList.html',
-    controller: EditTrigger
+    controller: TriggersList
   });
 
-EditTrigger.$inject = ['$http'];
+TriggersList.$inject = ['TriggerService', '$state'];
 
-function EditTrigger($http) {
+function TriggersList(TriggerService, $state) {
   var vm = this;
 
-  $http
-    .get('triggersTeste.json')
-    .then(function (response) {
-      vm.triggers = response.data;
-    });
+  TriggerService.listar().then(function (resultado) {
+    vm.triggers = resultado;
+  }, function (falha) {
+    window.alerta(falha);
+  });
+
+  vm.editar = function (id) {
+    $state.go('app.editTriggers', { id: id })
+  }
 }

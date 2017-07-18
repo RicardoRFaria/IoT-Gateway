@@ -6,15 +6,29 @@ import TriggerListagemDTO from '../dto/TriggerListagemDTO';
  */
 class TriggerApi {
 
-    constructor() {
-        
+    public get(req: any, res: any): void {
+        let id = req.params.id;
+        if (!id) {
+            res.status(400).send('Trigger com id: ' + id + 'não existe.');
+            return;
+        }
+        Trigger.find({_id : id}, function (err, triggers: Array<Trigger>) {
+            if (err) {
+                res.status(500).send('Falha ao buscar trigger com id: ' + id + ', erro: ' + err);
+                return;
+            }
+            if (triggers.length === 0) {
+                res.status(400).send('Trigger com id: ' + id + 'não existe.');
+                return;
+            }
+            res.json(triggers[0]);
+        });
     }
 
     public listar(res: any): void {
         Trigger.find({}, function (err, triggers: Array<Trigger>) {
             if (err) {
-                res.status(500);
-                res.send('Falha ao listar as triggers', err);
+                res.status(500).send('Falha ao listar as triggers' + err);
                 return;
             }
             let dtos = [];

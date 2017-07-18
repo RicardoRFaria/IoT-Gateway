@@ -50,6 +50,7 @@ class App {
     router.post('/dispositivo', this.dispositivoApi.salvar);
     router.put('/dispositivo', this.dispositivoApi.editar);
 
+    router.get('/trigger/:id', this.triggerApi.get);
     router.get('/trigger', (req, res, next) => {
       this.triggerApi.listar(res);
     });
