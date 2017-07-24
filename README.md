@@ -18,16 +18,21 @@ Gateway para iteração com dispositivos de IoT desenvolvido em node.js e Typesc
 + `npm test` - Executa os testes
 + `npm test:watch` - Inicia um watch que executa os testes sempre que algo for modificado
 
-## Dependencias
+## Dependências
 MongoDb, pode ser baixado através de imagem docker e executado da seguinte forma:
 
-docker pull tutum/mongodb
-docker run -d -p 27017:27017 -p 28017:28017 -e MONGODB_PASS="iot-gateway" tutum/mongodb
+```
+$ docker pull tutum/mongodb
+$ docker run -d -p 27017:27017 -p 28017:28017 -e MONGODB_PASS="iot-gateway" tutum/mongodb
+```
 
 ## Executando a aplicação
 1. Execute o comando `npm run watch` em um console e deixe aberto
 2. Execute o comando `npm start` em outro console
 3. Abra o navegador na tela padrão conforme a porta configurada (ela será escrita no log, por padrão é 3000).
+
+## Papper
+O papper (artigo) que está sendo confeccionado pode ser conferido aqui: [IoT-Gateway-TCC](https://github.com/daniloguimaraes/IoT-Gateway-TCC).
 
 ## License
 MIT License. [LICENSE](https://github.com/jsynowiec/node-typescript-boilerplate/blob/master/LICENSE).
