@@ -6,6 +6,7 @@ import MqttServer from './mqtt-server';
 import DispositivoApi from './api/DispositivoApi';
 import TriggerApi from './api/TriggerApi';
 import MensageriaApi from './api/MensageriaApi';
+import DadosBasicosApi from './api/DadosBasicosApi';
 import * as mongoose from 'mongoose';
 import dbconfig from './config/mongoose';
 
@@ -15,12 +16,14 @@ class App {
   private express: express.Application;
   private dispositivoApi: DispositivoApi;
   private triggerApi: TriggerApi;
+  private dadosBasicosApi: DadosBasicosApi;
  
   constructor() {
     this.express = express();
     this.middleware();
     this.dispositivoApi = new DispositivoApi();
     this.triggerApi = new TriggerApi();
+    this.dadosBasicosApi = new DadosBasicosApi();
     this.routes();
     MqttServer.init(new MensageriaApi());
     mongoose.connect(dbconfig.url, dbconfig.options, function (error) {
@@ -57,6 +60,8 @@ class App {
     router.get('/trigger', (req, res, next) => {
       this.triggerApi.listar(res);
     });
+
+    router.get('/basicos', this.dadosBasicosApi.criar);
 
     this.express.use('/scripts/bootstrap/', express.static(__dirname + '/../../node_modules/bootstrap/dist/'));
     this.express.use('/scripts/angular/', express.static(__dirname + '/../../node_modules/angular/'));

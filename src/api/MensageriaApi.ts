@@ -12,7 +12,6 @@ class MensageriaApi {
     }
 
     public novaMensagem (clientId, conteudo: any): void {
-        console.log('NOVA MENSAGEM');
         this.getPipelineDeAcoes(clientId, conteudo);
     }
 
