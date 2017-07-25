@@ -1,6 +1,9 @@
+import TIPO_EVENTO from './TIPO_EVENTO';
+
 interface IEvento {
-    nome: String;
-    descricao: String;
+    tipo: TIPO_EVENTO;
+    destinatario: String;
+    mensagem: String;
 };
 
 export = IEvento;

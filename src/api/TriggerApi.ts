@@ -9,7 +9,7 @@ class TriggerApi {
     public get(req: any, res: any): void {
         let id = req.params.id;
         if (!id) {
-            res.status(400).send('Trigger com id: ' + id + 'não existe.');
+            res.status(400).send('Trigger não recebida.');
             return;
         }
         Trigger.find({_id : id}, function (err, triggers: Array<Trigger>) {
@@ -22,6 +22,21 @@ class TriggerApi {
                 return;
             }
             res.json(triggers[0]);
+        });
+    }
+
+    public excluir(req: any, res: any): void {
+        let id = req.params.id;
+        if (!id) {
+            res.status(400).send('Trigger não recebida.');
+            return;
+        }
+        Trigger.remove({_id : id}, function (err) {
+            if (err) {
+                res.status(500).send('Não foi possível excluir trigger com id: ' + id + ', erro: ' + err);
+                return;
+            }
+            res.send('Excluído com sucesso');
         });
     }
 

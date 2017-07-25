@@ -5,14 +5,39 @@ angular
     controller: EditDispositivo
   });
 
-EditDispositivo.$inject = ['$http'];
+EditDispositivo.$inject = ['DispositivosService', 'TriggerService', '$stateParams', '$state', 'ModalUtil'];
 
-function EditDispositivo($http) {
-  var vm = this;
+function EditDispositivo(DispositivosService, TriggerService, $stateParams, $state, ModalUtil) {
+  const vm = this;
 
-  $http
-    .get('triggersTeste.json')
-    .then(function (response) {
-      vm.triggers = response.data;
-    });
+  preencherSelects();
+  carregarOuCriarDispositivo();
+  
+  vm.enviar = function () {
+    DispositivosService.salvar(vm.dispositivo).then(function (objetoSalvo) {
+      ModalUtil.msgSuccess('Dispositivo salvo com sucesso!');
+      $state.go('app.editDispositivo', { id: objetoSalvo._id })
+    }, ModalUtil.mostrarErroPadraoPromise);
+  }
+
+  function carregarOuCriarDispositivo() {
+    if ($stateParams.id) {
+      DispositivosService.get($stateParams.id).then(function (dispositivoExistente) {
+        vm.dispositivo = dispositivoExistente;
+      }, ModalUtil.mostrarErroPadraoPromise);
+    } else {
+      vm.dispositivo = new DispositivoObject();
+    }
+  }
+
+  function preencherSelects() {
+    vm.triggers = {};
+    TriggerService.listar().then(function (resultado) {
+      let objectTriggers = {};
+      resultado.forEach(function (trigger) {
+        objectTriggers[trigger._id] = trigger;
+      })
+      vm.triggers = objectTriggers;
+    }, ModalUtil.mostrarErroPadraoPromise);
+  }
 }

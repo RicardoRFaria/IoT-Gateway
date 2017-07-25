@@ -5,9 +5,9 @@ angular
     controller: TriggersList
   });
 
-TriggersList.$inject = ['TriggerService', '$stateParams', 'ModalUtil'];
+TriggersList.$inject = ['TriggerService', '$stateParams', '$state', 'ModalUtil'];
 
-function TriggersList(TriggerService, $stateParams, ModalUtil) {
+function TriggersList(TriggerService, $stateParams, $state, ModalUtil) {
   const vm = this;
   preencherSelects();
   carregarOuCriarTrigger();
@@ -15,8 +15,12 @@ function TriggersList(TriggerService, $stateParams, ModalUtil) {
   vm.enviar = function () {
     TriggerService.salvar(vm.trigger).then(function (objetoSalvo) {
       ModalUtil.msgSuccess('Trigger salva com sucesso!');
-      vm.trigger = objetoSalvo;
+      $state.go('app.editTriggers', { id: objetoSalvo._id })
     }, ModalUtil.mostrarErroPadraoPromise);
+  }
+
+  vm.adicionarEvento = function () {
+    vm.trigger.eventosRelacionados.push(new EventoObject());
   }
 
   function carregarOuCriarTrigger() {
@@ -30,10 +34,10 @@ function TriggersList(TriggerService, $stateParams, ModalUtil) {
   }
 
   function preencherSelects() {
-    vm.opcoesOperacao = [
-      {valor: '1', descricao: 'Range'},
-      {valor: '2', descricao: 'Igualdade'}
-    ]
+    vm.opcoesOperacao = {
+      1 : {descricao: 'Range'},
+      2 : {descricao: 'Igualdade'}
+    }
   }
 
 }

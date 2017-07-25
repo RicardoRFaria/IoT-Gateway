@@ -1,7 +1,4 @@
 import Trigger from '../model/Trigger';
-import IOperacao from '../model/IOperacao';
-import IEvento from '../model/IEvento';
-import TIPO_OPERACAO from '../model/TIPO_OPERACAO';
 import EventoApi from './EventoApi';
 
 import MotorDeOperacoes from '../acoes/MotorDeOperacoes';
@@ -14,12 +11,13 @@ class MensageriaApi {
         this.eventoApi = new EventoApi();
     }
 
-    public novaMensagem (clientId, conteudo): void {
-        let pipeline = this.getPipelineDeAcoes(clientId);
-        if (pipeline === null || pipeline.length === 0) {
-            console.log('Mensagem recebida de um client sem ações configuradas, cliend id: ' + clientId);
-        }
-        pipeline.forEach(trigger => {
+    public novaMensagem (clientId, conteudo: any): void {
+        console.log('NOVA MENSAGEM');
+        this.getPipelineDeAcoes(clientId, conteudo);
+    }
+
+    private avaliarEExecutarPipelineDeAcoes(triggers: Array<Trigger>, conteudo: any) {
+        triggers.forEach(trigger => {
             let prossegue = MotorDeOperacoes.prossegue(trigger.operacao, conteudo);
             if (prossegue) {
                 console.info('Evento atendido, prossegue.');
@@ -33,30 +31,19 @@ class MensageriaApi {
                 console.info('Evento nao atendido, nenhuma ação será executada');
             }
         });
-
     }
 
-    private getPipelineDeAcoes(clientId: String) : Array<Trigger> {
-        let operacao =  <IOperacao>{};
-        operacao.tipo = TIPO_OPERACAO.EQUALS;
-        operacao.valor = 'true';
-
-        let evento =  <IEvento>{
-            id: 'sms',
-            nome: 'Envio de SMS',
-            descricao: 'Envia um sms para o numero 62 982081739'
-        };
-        let eventosRelacionados = [evento];
-        let trigger = new Trigger({
-            operacao: operacao,
-            eventosRelacionados: eventosRelacionados
+    private getPipelineDeAcoes(clientId: String, conteudo: any) : void {
+        let mensageriaApi = this;
+        Trigger.find({}, function (err, triggers: Array<Trigger>) {
+            if (err) {
+                console.log('Erro ao carregar as triggers relacionadas ao cliente: ' + clientId + ', erro: ' + err);
+            }
+            if (triggers === null || triggers.length === 0) {
+                console.log('Mensagem recebida de um client sem ações configuradas, cliend id: ' + clientId);
+            }
+            mensageriaApi.avaliarEExecutarPipelineDeAcoes(triggers, conteudo)
         });
-        // Desativado pois não precisa salvar por enquanto
-        /*trigger.save(function (err, data) {
-            console.log(err);
-            console.log(data);
-        });*/ 
-        return [trigger];
     }
 
     

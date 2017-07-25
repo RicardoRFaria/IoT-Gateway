@@ -1,1 +1,40 @@
-<h1>TESTE DISPOSITIVO</h1>
+<h1>Cadastro de Dispositivo</h1>
+<form novalidate class="simple-form row">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control" id="nome" ng-model="$ctrl.dispositivo.nome" 
+                required ng-class="$ctrl.dispositivo.nome.$invalid? 'has-error' : 'has-success'">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="mqttClientId">ID do cliente MQTT:</label>
+            <input type="text" class="form-control" id="mqttClientId" ng-model="$ctrl.dispositivo.mqttClientId" 
+                required ng-class="$ctrl.dispositivo.mqttClientId.$invalid? 'has-error' : 'has-success'">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="nome">Trigger:</label>
+            <ui-select ng-model="$ctrl.dispositivo.idTrigger" title="Triggers" search-enabled="false">
+                <ui-select-match placeholder="Selecione...">{{$select.selected.value.nome}}</ui-select-match>
+                <ui-select-choices repeat="triggers as (_id, triggers) in $ctrl.triggers">
+                    <span ng-bind-html="triggers.value.nome"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="mqttClientId">Ativo:</label>
+            <div>
+                <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="$ctrl.dispositivo.ativo" uib-btn-radio="true" uncheckable>Ativo</label>
+                    <label class="btn btn-primary" ng-model="$ctrl.dispositivo.ativo" uib-btn-radio="'false'" uncheckable>Inativo</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" ng-click="$ctrl.enviar()">Enviar</button>
+</form>

@@ -39,28 +39,30 @@ class App {
 
   // Configure API endpoints.
   private routes(): void {
-    /* This is just to get up and running, and to make sure what we've got is
-     * working so far. This function will change when we start to add more
-     * API endpoints */
     let router = express.Router();
-    // placeholder route handler
+    
+
+    router.get('/dispositivo/:id', this.dispositivoApi.get);
+    router.delete('/dispositivo/:id', this.dispositivoApi.excluir);
+    router.post('/dispositivo', this.dispositivoApi.salvar);
+    router.put('/dispositivo', this.dispositivoApi.editar);
     router.get('/dispositivo', (req, res, next) => {
       this.dispositivoApi.listar(res);
     });
-    router.post('/dispositivo', this.dispositivoApi.salvar);
-    router.put('/dispositivo', this.dispositivoApi.editar);
 
     router.get('/trigger/:id', this.triggerApi.get);
+    router.delete('/trigger/:id', this.triggerApi.excluir);
+    router.post('/trigger', this.triggerApi.salvar);
+    router.put('/trigger', this.triggerApi.editar);
     router.get('/trigger', (req, res, next) => {
       this.triggerApi.listar(res);
     });
-    router.post('/trigger', this.triggerApi.salvar);
-    router.put('/trigger', this.triggerApi.editar);
 
     this.express.use('/scripts/bootstrap/', express.static(__dirname + '/../../node_modules/bootstrap/dist/'));
     this.express.use('/scripts/angular/', express.static(__dirname + '/../../node_modules/angular/'));
     this.express.use('/scripts/angular-ui-router/', express.static(__dirname + '/../../node_modules/angular-ui-router/release'));
     this.express.use('/scripts/angular-ui-bootstrap/', express.static(__dirname + '/../../node_modules/angular-ui-bootstrap/dist/'));
+    this.express.use('/scripts/ui-select/', express.static(__dirname + '/../../node_modules/ui-select/dist/'));
     this.express.use('/scripts/angular-sanitize/', express.static(__dirname + '/../../node_modules/angular-sanitize/'));
     this.express.use('/', express.static(__dirname + '/../../static'));
     this.express.use('/api', router);

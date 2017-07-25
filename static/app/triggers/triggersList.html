@@ -1,7 +1,7 @@
 <div>
-    <div class="form-group right">
+    <div class="form-group pull-right">
         <button class="btn btn-success" type="button" ui-sref="app.editTriggers">
-            <i class="fa fa-plus"></i> Criar nova trigger
+            <i class="fa fa-plus"></i> + Criar nova trigger
         </button>
     </div>
     <table class="table table-stripped">
@@ -13,9 +13,12 @@
         <tr ng-repeat="trigger in $ctrl.triggers">
             <td class="text-center">{{trigger.nome}}</td>
             <td class="text-center">{{trigger.quantidadeEventosRelacionados}}</td>
-            <td class="text-center">
-                <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.editar(trigger._id)">
-                    <span class="glyphicon glyphicon-pencil"></span> Editar 
+            <td class="text-right">
+                <button type="button" class="btn btn-primary" ng-click="$ctrl.editar(trigger._id)">
+                    <span class="glyphicon glyphicon-pencil"></span> 
+                </button>
+                <button class="btn btn-danger" type="button" ng-click="$ctrl.excluir(trigger)">
+                    <i class="fa fa-plus"></i> Excluir
                 </button>
             </td>
         </tr>

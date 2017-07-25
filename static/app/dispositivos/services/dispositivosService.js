@@ -1,10 +1,10 @@
 angular
     .module('app')
-    .service('TriggerService', TriggerService);
+    .service('DispositivosService', DispositivosService);
 
-TriggerService.$inject = ['$http', '$q'];
+DispositivosService.$inject = ['$http', '$q'];
 
-function TriggerService($http, $q) {
+function DispositivosService($http, $q) {
     this.salvar = salvar;
     this.listar = listar;
     this.get = get;
@@ -12,7 +12,7 @@ function TriggerService($http, $q) {
 
     function get(id) {
         return $q(function(resolve, reject) {
-            $http.get('/api/trigger/' + id)
+            $http.get('/api/dispositivo/' + id)
                 .then(function (resultado) {
                     resolve(resultado.data);
                 }, function (falha) {
@@ -24,7 +24,7 @@ function TriggerService($http, $q) {
 
     function excluir(id) {
         return $q(function(resolve, reject) {
-            $http.delete('/api/trigger/' + id)
+            $http.delete('/api/dispositivo/' + id)
                 .then(function (resultado) {
                     resolve(resultado.data);
                 }, function (falha) {
@@ -34,13 +34,13 @@ function TriggerService($http, $q) {
         });
     }
 
-    function salvar(trigger) {
+    function salvar(dispositivo) {
         return $q(function(resolve, reject) {
             let metodo = 'post';
-            if (trigger._id) {
+            if (dispositivo._id) {
                 metodo = 'put';
             }
-            $http[metodo]('/api/trigger/', JSON.stringify(trigger))
+            $http[metodo]('/api/dispositivo/', JSON.stringify(dispositivo))
                 .then(function (resultado) {
                     resolve(resultado.data);
                 }, function (falha) {
@@ -52,7 +52,7 @@ function TriggerService($http, $q) {
 
     function listar() {
         return $q(function(resolve, reject) {
-            $http.get('/api/trigger/')
+            $http.get('/api/dispositivo')
                 .then(function (resultado) {
                     resolve(resultado.data);
                 }, function (falha) {

@@ -5,14 +5,26 @@ angular
     controller: DispositivosListController
   });
 
-DispositivosListController.$inject = ['$http'];
+DispositivosListController.$inject = ['DispositivosService', '$state', 'ModalUtil'];
 
-function DispositivosListController($http) {
+function DispositivosListController(DispositivosService, $state, ModalUtil) {
   var vm = this;
 
-  $http
-    .get('dispositivosTeste.json')
-    .then(function (response) {
-      vm.dispositivos = response.data;
-    });
+  DispositivosService.listar().then(function (response) {
+    vm.dispositivos = response;
+  }, ModalUtil.mostrarErroPadraoPromise);
+
+  vm.editar = function (id) {
+    $state.go('app.editDispositivo', { id: id })
+  }
+
+  vm.excluir = function (dispositivo) {
+    DispositivosService.excluir(dispositivo._id).then(function (resultado) {
+      ModalUtil.msgSuccess('Dispositivo excluído com sucesso.');
+      var index = vm.dispositivos.indexOf(dispositivo);
+      if (index > -1) {
+          vm.dispositivos.splice(index, 1);
+      }
+    }, ModalUtil.mostrarErroPadraoPromise);
+  }
 }

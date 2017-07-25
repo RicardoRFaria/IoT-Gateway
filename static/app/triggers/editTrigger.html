@@ -1,33 +1,66 @@
 <h1>Cadastro de Trigger</h1>
-<form novalidate class="simple-form">
-
-    <div class="form-group">
-        <label for="nome">Nome:</label>
-        <input type="text" class="form-control" id="nome" ng-model="$ctrl.trigger.nome" 
-            required ng-class="$ctrl.trigger.nome.$invalid? 'has-error' : 'has-success'">
-    </div>
-
-    <div class="form-group">
-      <label for="selectTipoOperacao">Tipo de operação</label>
-      <select id="selectTipoOperacao" class="form-control" ng-model="$ctrl.trigger.operacao.tipo" required>
-        <option ng-repeat="operacao in $ctrl.opcoesOperacao" value="{{operacao.valor}}">{{operacao.descricao}}</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="selectTipoOperacao">Valor da operação</label>
-        <div class="input-group" ng-if="$ctrl.trigger.operacao.tipo == 1">
-            <span class="input-group-addon">Indo de</span>
-            <input type="number" class="form-control" aria-label="Valor inicial" ng-model="$ctrl.trigger.operacao.valorInicial"
-                ng-class="$ctrl.trigger.operacao.valorInicial.$invalid? 'has-error' : 'has-success'" required>
-            <span class="input-group-addon">Até</span>
-            <input type="number" class="form-control" aria-label="Valor final" ng-model="$ctrl.trigger.operacao.valorFinal"
-                ng-class="$ctrl.trigger.operacao.valorFinal.$invalid? 'has-error' : 'has-success'" required>
+<form novalidate class="simple-form row">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control" id="nome" ng-model="$ctrl.trigger.nome" 
+                required ng-class="$ctrl.trigger.nome.$invalid? 'has-error' : 'has-success'">
         </div>
-        <input type="text" class="form-control" ng-if="$ctrl.trigger.operacao.tipo == 2" ng-model="$ctrl.trigger.operacao.valor"
-            ng-class="$ctrl.trigger.operacao.valor.$invalid? 'has-error' : 'has-success'" required>
+
+        <div class="form-group col-md-6">
+            <label for="selectTipoOperacao">Tipo de operação</label>
+            <ui-select ng-model="$ctrl.trigger.operacao.tipo" title="Tipo de operação" search-enabled="false">
+                <ui-select-match placeholder="Selecione...">{{$select.selected.value.descricao}}</ui-select-match>
+                <ui-select-choices repeat="operacao.valor as (valor, operacao) in $ctrl.opcoesOperacao">
+                    <span ng-bind-html="operacao.value.descricao"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label for="selectTipoOperacao">Valor da operação</label>
+            <div class="input-group" ng-if="$ctrl.trigger.operacao.tipo == 1">
+                <span class="input-group-addon">Indo de</span>
+                <input type="number" class="form-control" aria-label="Valor inicial" ng-model="$ctrl.trigger.operacao.valorInicial"
+                    ng-class="$ctrl.trigger.operacao.valorInicial.$invalid? 'has-error' : 'has-success'" required>
+                <span class="input-group-addon">Até</span>
+                <input type="number" class="form-control" aria-label="Valor final" ng-model="$ctrl.trigger.operacao.valorFinal"
+                    ng-class="$ctrl.trigger.operacao.valorFinal.$invalid? 'has-error' : 'has-success'" required>
+            </div>
+            <input type="text" class="form-control" ng-if="$ctrl.trigger.operacao.tipo == 2" ng-model="$ctrl.trigger.operacao.valor"
+                ng-class="$ctrl.trigger.operacao.valor.$invalid? 'has-error' : 'has-success'" required>
+        </div>
+    </div>
+
+    <div class="form-group pull-right">
+        <button class="btn btn-success" type="button" ng-click="$ctrl.adicionarEvento()">
+            <i class="fa fa-plus"></i> +
+        </button>
+    </div>
+    <table class="table table-stripped">
+        <tr>
+            <th class="text-center col-md-5" >Destinatário</th>
+            <th class="text-center col-md-5">Mensagem</th>
+            <th class="col-md-2"></th>
+        </tr>
+        <tr ng-repeat="evento in $ctrl.trigger.eventosRelacionados">
+            <td>
+                <input type="text" class="form-control" id="destinatario" ng-model="evento.destinatario" 
+                    required ng-class="evento.destinatario.$invalid? 'has-error' : 'has-success'">
+            </td>
+            <td>
+                <input type="text" class="form-control" id="mensagem" ng-model="evento.mensagem" 
+                    required ng-class="evento.mensagem.$invalid? 'has-error' : 'has-success'">
+            </td>
+            <td class="text-center">
+                <button class="btn btn-danger" type="button" ng-click="$ctrl.removerEvento(evento)">
+                    <i class="fa fa-plus"></i> Excluir
+                </button>
+            </td>
+        </tr>
+    </table>
 
     <button type="submit" class="btn btn-primary" ng-click="$ctrl.enviar()">Enviar</button>
-
 </form>

@@ -1,25 +1,28 @@
 <div>
-    <div class="form-group right">
+    <div class="form-group pull-right">
         <button class="btn btn-success" type="button" ui-sref="app.editDispositivo">
-            <i class="fa fa-plus"></i> Criar novo dispositivo
+            <i class="fa fa-plus"></i> + Criar novo dispositivo
         </button>
     </div>
     <table class="table table-stripped">
         <tr>
-            <th class="text-center">Nome</th>
-            <th class="text-center">MQTT Client ID</th>
-            <th class="text-center">ID da trigger</th>
-            <th class="text-center">Ativo</th>
-            <th class="text-center"></th>
+            <th class="text-center col-md-3">Nome</th>
+            <th class="text-center col-md-2">MQTT Client ID</th>
+            <th class="text-center col-md-3">ID da trigger</th>
+            <th class="text-center col-md-2">Status</th>
+            <th class="text-center col-md-2"></th>
         </tr>
         <tr ng-repeat="dispositivo in $ctrl.dispositivos">
             <td class="text-center">{{dispositivo.nome}}</td>
             <td class="text-center">{{dispositivo.mqttClientId}}</td>
             <td class="text-center">{{dispositivo.idTrigger}}</td>
             <td class="text-center">{{dispositivo.ativo}}</td>
-            <td class="text-center">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-pencil"></span> Editar 
+            <td class="text-right">
+                <button type="button" class="btn btn-primary" ng-click="$ctrl.editar(dispositivo._id)">
+                    <span class="glyphicon glyphicon-pencil"></span> 
+                </button>
+                <button class="btn btn-danger" type="button" ng-click="$ctrl.excluir(dispositivo)">
+                    <i class="fa fa-plus"></i> Excluir
                 </button>
             </td>
         </tr>
