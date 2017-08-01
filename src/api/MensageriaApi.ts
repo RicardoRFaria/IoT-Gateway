@@ -1,6 +1,6 @@
 import Trigger from '../model/Trigger';
 import EventoApi from './EventoApi';
-import Dispositivo from '../model/Dispostivo';
+import Dispositivo from '../model/Dispositivo';
 
 import MotorDeOperacoes from '../acoes/MotorDeOperacoes';
 

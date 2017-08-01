@@ -1,5 +1,5 @@
 import Trigger from '../model/Trigger';
-import Dispositivo from '../model/Dispostivo';
+import Dispositivo from '../model/Dispositivo';
 import TIPO_OPERACAO from '../model/TIPO_OPERACAO';
 import TIPO_EVENTO from '../model/TIPO_EVENTO';
 

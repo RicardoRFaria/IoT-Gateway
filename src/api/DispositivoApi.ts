@@ -1,4 +1,4 @@
-import Dispositivo from '../model/Dispostivo';
+import Dispositivo from '../model/Dispositivo';
 import DispositivoListagemDTO from '../dto/DispositivoListagemDTO';
 
 class DispositivoApi {
