@@ -9,16 +9,16 @@ class DispositivoApi {
             res.status(400).send('Dispositivo não recebido.');
             return;
         }
-        Dispositivo.find({ _id: id }, function (err, triggers: Array<Dispositivo>) {
+        Dispositivo.find({ _id: id }, function (err, dispositivos: Array<Dispositivo>) {
             if (err) {
                 res.status(500).send('Falha ao buscar dispositivo com id: ' + id + ', erro: ' + err);
                 return;
             }
-            if (triggers.length === 0) {
+            if (dispositivos.length === 0) {
                 res.status(400).send('Dispositivo com id: ' + id + 'não existe.');
                 return;
             }
-            res.json(triggers[0]);
+            res.json(dispositivos[0]);
         });
     }
 

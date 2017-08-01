@@ -18,8 +18,11 @@ class MqttServer {
 
         // fired when a message is received
         this.server.on('published', function (packet, client) {
+            if (client === undefined) {
+                return;
+            }
             console.log('Published', packet.payload.toString());
-            apiMensagem.novaMensagem(client, packet.payload.toString());
+            apiMensagem.novaMensagem(client.id, packet.payload.toString());
         });
 
         this.server.on('ready', this.setup);

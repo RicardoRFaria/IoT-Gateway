@@ -1,9 +1,13 @@
 import Trigger from '../model/Trigger';
 import EventoApi from './EventoApi';
+import Dispositivo from '../model/Dispostivo';
 
 import MotorDeOperacoes from '../acoes/MotorDeOperacoes';
 
+const ID_CLIENT_WILDCARD = '*';
+
 class MensageriaApi {
+
 
     private eventoApi: EventoApi;
 
@@ -11,7 +15,7 @@ class MensageriaApi {
         this.eventoApi = new EventoApi();
     }
 
-    public novaMensagem (clientId, conteudo: any): void {
+    public novaMensagem(clientId, conteudo: any): void {
         this.getPipelineDeAcoes(clientId, conteudo);
     }
 
@@ -33,16 +37,40 @@ class MensageriaApi {
     }
 
     private getPipelineDeAcoes(clientId: String, conteudo: any) : void {
+        if (clientId === undefined) {
+            console.error('MQTT Cliend ID recebido é undefined.');
+            return;
+        }
+        console.info('Consultando dispositivos com MQTT Client ID: ' + clientId);
         let mensageriaApi = this;
-        Trigger.find({}, function (err, triggers: Array<Trigger>) {
+        let consultaClientId = {$or:[ {'mqttClientId':clientId}, {'mqttClientId': ID_CLIENT_WILDCARD }]};
+        Dispositivo.find(consultaClientId, function (err, dispositivos: Array<Dispositivo>) {
             if (err) {
-                console.log('Erro ao carregar as triggers relacionadas ao cliente: ' + clientId + ', erro: ' + err);
+                console.log('Erro ao carregar o client com MQTT ID: ' + clientId + ', erro: ' + err);
+                return;
             }
-            if (triggers === null || triggers.length === 0) {
-                console.log('Mensagem recebida de um client sem ações configuradas, cliend id: ' + clientId);
+            if (dispositivos === null || dispositivos.length === 0) {
+                console.log('Nenhum dispositivo com MQTT ID: ' + clientId + ' foi encontrado.');
+                return;
             }
-            mensageriaApi.avaliarEExecutarPipelineDeAcoes(triggers, conteudo)
+            console.info('Encontrado ' + dispositivos.length + ' dispositivo para o MQTT ID:' + clientId);
+            dispositivos.forEach(dispositivo => {
+                console.info('Processando dispositivo com nome: ' + dispositivo.nome);
+                Trigger.find({'_id': dispositivo.idTrigger}, function (err, triggers: Array<Trigger>) {
+                    if (err) {
+                        console.log('Erro ao carregar as triggers relacionadas ao cliente: ' + clientId + ', erro: ' + err);
+                        return;
+                    }
+                    if (triggers === null || triggers.length === 0) {
+                        console.log('Mensagem recebida de um client sem ações configuradas, cliend id: ' + clientId);
+                        return;
+                    }
+                    mensageriaApi.avaliarEExecutarPipelineDeAcoes(triggers, conteudo)
+                });
+
+            });
         });
+
     }
 
     
