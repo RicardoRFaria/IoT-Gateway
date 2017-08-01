@@ -31,6 +31,14 @@ $ docker run -d -p 27017:27017 -p 28017:28017 -e MONGODB_PASS="iot-gateway" tutu
 2. Execute o comando `npm start` em outro console
 3. Abra o navegador na tela padrão conforme a porta configurada (ela será escrita no log, por padrão é 3000).
 
+## Carregando com dados básicos:
+Os dados básicos para execução da app, são criados através de uma URL exposta no endpoint de api no endereço:
+`http://localhost:3000/api/basicos`
+
+Ao executar este endereço, será criado um cadastro wildcard, com ID do MQTT Client '*', de forma que qualquer dispositivo enviando os dados, terá seu cadastro de dispositivo atendido para este.
+
+O evento padrão é o envio de SMS para o número padrão e será enviado sempre que a aplicação receber um valor 'true'.
+
 ## Papper
 O papper (artigo) que está sendo confeccionado pode ser conferido aqui: [IoT-Gateway-TCC](https://github.com/daniloguimaraes/IoT-Gateway-TCC).
 
