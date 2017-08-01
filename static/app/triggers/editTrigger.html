@@ -10,9 +10,9 @@
         <div class="form-group col-md-6">
             <label for="selectTipoOperacao">Tipo de operação</label>
             <ui-select ng-model="$ctrl.trigger.operacao.tipo" title="Tipo de operação" search-enabled="false">
-                <ui-select-match placeholder="Selecione...">{{$select.selected.value.descricao}}</ui-select-match>
-                <ui-select-choices repeat="operacao.valor as (valor, operacao) in $ctrl.opcoesOperacao">
-                    <span ng-bind-html="operacao.value.descricao"></span>
+                <ui-select-match placeholder="Selecione...">{{$select.selected.descricao}}</ui-select-match>
+                <ui-select-choices repeat="operacao.id as operacao in $ctrl.opcoesOperacao">
+                    <span ng-bind-html="operacao.descricao"></span>
                 </ui-select-choices>
             </ui-select>
         </div>

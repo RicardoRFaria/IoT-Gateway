@@ -34,10 +34,10 @@ function TriggersList(TriggerService, $stateParams, $state, ModalUtil) {
   }
 
   function preencherSelects() {
-    vm.opcoesOperacao = {
-      1 : {descricao: 'Range'},
-      2 : {descricao: 'Igualdade'}
-    }
+    vm.opcoesOperacao = [
+      {id: 1, descricao: 'Range'},
+      {id: 2, descricao: 'Igualdade'}
+    ]
   }
 
 }

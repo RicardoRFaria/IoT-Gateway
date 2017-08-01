@@ -18,9 +18,9 @@
         <div class="form-group col-md-6">
             <label for="nome">Trigger:</label>
             <ui-select ng-model="$ctrl.dispositivo.idTrigger" title="Triggers" search-enabled="false">
-                <ui-select-match placeholder="Selecione...">{{$select.selected.value.nome}}</ui-select-match>
-                <ui-select-choices repeat="triggers as (_id, triggers) in $ctrl.triggers">
-                    <span ng-bind-html="triggers.value.nome"></span>
+                <ui-select-match placeholder="Selecione...">{{$select.selected.nome}}</ui-select-match>
+                <ui-select-choices repeat="trigger._id as trigger in $ctrl.triggers">
+                    <span ng-bind-html="trigger.nome"></span>
                 </ui-select-choices>
             </ui-select>
         </div>

@@ -31,13 +31,12 @@ function EditDispositivo(DispositivosService, TriggerService, $stateParams, $sta
   }
 
   function preencherSelects() {
-    vm.triggers = {};
+    vm.triggers = [];
     TriggerService.listar().then(function (resultado) {
       let objectTriggers = {};
       resultado.forEach(function (trigger) {
-        objectTriggers[trigger._id] = trigger;
+        vm.triggers.push(trigger);
       })
-      vm.triggers = objectTriggers;
     }, ModalUtil.mostrarErroPadraoPromise);
   }
 }
