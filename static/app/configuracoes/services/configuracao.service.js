@@ -10,11 +10,7 @@ function ConfiguracaoService($http, $q) {
 
     function salvarSMS(configuracao) {
         return $q(function(resolve, reject) {
-            let metodo = 'post';
-            if (configuracao._id) {
-                metodo = 'put';
-            }
-            $http[metodo]('/api/configuracao/sms/', JSON.stringify(configuracao))
+            $http.post('/api/configuracao/sms/', JSON.stringify(configuracao))
                 .then(function (resultado) {
                     resolve(resultado.data);
                 }, function (falha) {

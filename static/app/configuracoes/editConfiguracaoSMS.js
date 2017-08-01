@@ -13,7 +13,7 @@ function EditConfiguracaoSMS(ConfiguracaoService, $stateParams, $state, ModalUti
   carregarOuCriar();
   
   vm.enviar = function () {
-    salvarConfiguracaoSMS.salvarSMS(vm.configuracao).then(function (objetoSalvo) {
+    ConfiguracaoService.salvarSMS(vm.configuracao).then(function (objetoSalvo) {
       ModalUtil.msgSuccess('Configuração de SMS salva com sucesso!');
     }, ModalUtil.mostrarErroPadraoPromise);
   }

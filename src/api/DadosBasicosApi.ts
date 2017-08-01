@@ -2,6 +2,7 @@ import Trigger from '../model/Trigger';
 import Dispositivo from '../model/Dispositivo';
 import TIPO_OPERACAO from '../model/TIPO_OPERACAO';
 import TIPO_EVENTO from '../model/TIPO_EVENTO';
+import Configuracao from '../model/Configuracao';
 
 /**
  * Api responsavel por salvar os dados basicos para teste
@@ -44,7 +45,16 @@ class DadosBasicosApi {
             });
         });
 
-        
+        let configuracao = new Configuracao({
+            tipo: 'sms',
+            apikey: '01e67d9e',
+            apisecret: '95674ea318465f5e',
+            virtualnumber: '5562982081739'
+        });
+        configuracao.save(function (err, configuracaoSalva) {
+            console.log(err);
+            console.log(configuracaoSalva);
+        });
     }
 }
 

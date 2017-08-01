@@ -7,6 +7,7 @@ import DispositivoApi from './api/DispositivoApi';
 import TriggerApi from './api/TriggerApi';
 import MensageriaApi from './api/MensageriaApi';
 import DadosBasicosApi from './api/DadosBasicosApi';
+import ConfiguracaoApi from './api/ConfiguracaoApi';
 import * as mongoose from 'mongoose';
 import dbconfig from './config/mongoose';
 
@@ -17,6 +18,7 @@ class App {
   private dispositivoApi: DispositivoApi;
   private triggerApi: TriggerApi;
   private dadosBasicosApi: DadosBasicosApi;
+  private configuracaoApi: ConfiguracaoApi;
  
   constructor() {
     this.express = express();
@@ -24,6 +26,7 @@ class App {
     this.dispositivoApi = new DispositivoApi();
     this.triggerApi = new TriggerApi();
     this.dadosBasicosApi = new DadosBasicosApi();
+    this.configuracaoApi = new ConfiguracaoApi();
     this.routes();
     MqttServer.init(new MensageriaApi());
     mongoose.connect(dbconfig.url, dbconfig.options, function (error) {
@@ -59,6 +62,13 @@ class App {
     router.put('/trigger', this.triggerApi.editar);
     router.get('/trigger', (req, res, next) => {
       this.triggerApi.listar(res);
+    });
+
+    router.get('/configuracao/sms', (req, res) => {
+      this.configuracaoApi.get('sms', res);
+    });
+    router.post('/configuracao/sms', (req, res) => {
+      this.configuracaoApi.salvar('sms', req, res);
     });
 
     router.get('/basicos', this.dadosBasicosApi.criar);
