@@ -4,12 +4,16 @@ angular
 
 /** @ngInject */
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('home');
 
   $stateProvider
     .state('app', {
       url: '/',
       component: 'app'
+    })
+    .state('app.home', {
+      url: 'home',
+      component: 'home'
     })
     .state('app.triggersList', {
       url: 'triggersList',
