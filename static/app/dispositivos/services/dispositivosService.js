@@ -1,10 +1,10 @@
 angular
     .module('app')
-    .service('DispositivosService', DispositivosService);
+    .service('DispositivosService', ConfiguracaoService);
 
-DispositivosService.$inject = ['$http', '$q'];
+ConfiguracaoService.$inject = ['$http', '$q'];
 
-function DispositivosService($http, $q) {
+function ConfiguracaoService($http, $q) {
     this.salvar = salvar;
     this.listar = listar;
     this.get = get;

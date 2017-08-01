@@ -1,0 +1,26 @@
+<h1>Configuração de SMS - Nexmo API</h1>
+<form novalidate class="simple-form row">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="apikey">API Key:</label>
+            <input type="text" class="form-control" id="apikey" ng-model="$ctrl.configuracao.apikey" 
+                required ng-class="$ctrl.configuracao.apikey.$invalid? 'has-error' : 'has-success'">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="apisecret">API Secret:</label>
+            <input type="text" class="form-control" id="apisecret" ng-model="$ctrl.configuracao.apisecret" 
+                required ng-class="$ctrl.configuracao.apisecret.$invalid? 'has-error' : 'has-success'">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="virtualnumber">Virtual Number:</label>
+            <input type="text" class="form-control" id="virtualnumber" ng-model="$ctrl.configuracao.virtualnumber" 
+                required ng-class="$ctrl.configuracao.virtualnumber.$invalid? 'has-error' : 'has-success'">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" ng-click="$ctrl.enviar()">Salvar</button>
+</form>

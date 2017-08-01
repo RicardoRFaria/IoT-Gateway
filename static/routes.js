@@ -30,6 +30,14 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('app.editDispositivo', {
       url: 'editDispositivo/?id',
       component: 'editDispositivo'
+    })
+    .state('app.configuracoesList', {
+      url: 'configuracoesList',
+      component: 'configuracoesList'
+    })
+    .state('app.editConfiguracaoSMS', {
+      url: 'editConfiguracaoSMS',
+      component: 'editConfiguracaoSMS'
     });
 
 }
