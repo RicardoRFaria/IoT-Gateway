@@ -8,7 +8,8 @@ let dbconfig = {
 
 let settings = {
     port: 1885,
-    backend: dbconfig
+    backend: dbconfig,
+    stats: false
 };
 
 export default settings;

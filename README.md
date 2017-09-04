@@ -1,4 +1,4 @@
-# Gateway para IoT
+# Gateway para IoT [![Build Status](https://travis-ci.org/RicardoRFaria/IoT-Gateway.svg?branch=master)](https://travis-ci.org/RicardoRFaria/IoT-Gateway)
 
 Gateway para iteração com dispositivos de IoT desenvolvido em node.js e Typescript
 
