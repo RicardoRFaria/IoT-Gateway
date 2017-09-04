@@ -1,4 +1,4 @@
-# Gateway para IoT [![Build Status](https://travis-ci.org/RicardoRFaria/IoT-Gateway.svg?branch=master)](https://travis-ci.org/RicardoRFaria/IoT-Gateway)
+# Gateway para IoT [![Build Status](https://travis-ci.org/RicardoRFaria/IoT-Gateway.svg?branch=master)](https://travis-ci.org/RicardoRFaria/IoT-Gateway) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f3647b9a82144132bcb7fdeea140684f)](https://www.codacy.com/app/ricardo-faria/IoT-Gateway?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RicardoRFaria/IoT-Gateway&amp;utm_campaign=Badge_Grade)
 
 Gateway para iteração com dispositivos de IoT desenvolvido em node.js e Typescript
 
