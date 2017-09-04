@@ -27,7 +27,10 @@ class MensageriaApi {
         triggers.forEach(trigger => {
             if (MotorDeOperacoes.prossegue(trigger.operacao, conteudo)) {
                 console.info('Evento atendido, prossegue.');
-                HistoricoMensagem.find({idDispositivo: clientId}).sort( {data: -1} ).limit(2).exec(function (err, historicos: Array<HistoricoMensagem>) {
+                HistoricoMensagem.find({idDispositivo: clientId})
+                    .sort( {data: -1} )
+                    .limit(2)
+                    .exec(function (err, historicos: Array<HistoricoMensagem>) {
                     if (historicos == null || historicos.length === 0) {
                         mensageriaApi.executarTrigger(clientId, trigger);
                     } else if (historicos.length === 1) {

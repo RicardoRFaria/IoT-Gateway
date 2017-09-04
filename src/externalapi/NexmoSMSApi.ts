@@ -33,7 +33,6 @@ class NexmoSmsApi {
                 } else {
                     console.error('Falha ao enviar SMS. Mensagem: ' + responseData.messages[0]['error-text']);
                 }
-                
             }
         );
     }
