@@ -1,10 +1,5 @@
 import * as Nexmo from 'nexmo';
-const nexmo = new Nexmo({
-    apiKey: '01e67d9e',
-    apiSecret: '95674ea318465f5e'
-});
-const VIRTUAL_NUMBER = '5562982081739'
-
+import Configuracao from '../model/Configuracao';
 /**
  * Api de terceiros responsável pelo envio de mensagens SMS
  */
@@ -15,16 +10,23 @@ class NexmoSmsApi {
      * 
      * @param destinatario telefone do destinatario
      * @param texto conteudo
+     * @param configuracao Configuracao para envio de SMS
      */
-    public enviar(destinatario: String, texto: String) {
+    public enviar(destinatario: String, texto: String, configuracao: Configuracao) {
+        let virtualNumber = configuracao.virtualnumber;
+        let nexmo = new Nexmo({
+            apiKey: configuracao.apikey,
+            apiSecret: configuracao.apisecret
+        });
         console.log('Enviando SMS para o numero: ' + destinatario + ' com o texto: ' + texto);
         nexmo.message.sendSms(
-            VIRTUAL_NUMBER, destinatario, texto,
+            virtualNumber, destinatario, texto,
             (err, responseData) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.dir(responseData);
+                    console.info('SMS enviado com sucesso!');
+                    console.info(responseData);
                 }
             }
         );

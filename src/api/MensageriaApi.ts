@@ -8,7 +8,6 @@ const ID_CLIENT_WILDCARD = '*';
 
 class MensageriaApi {
 
-
     private eventoApi: EventoApi;
 
     constructor() {
