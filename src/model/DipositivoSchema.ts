@@ -1,6 +1,6 @@
-import mongoose = require("mongoose");
+import mongoose = require('mongoose');
 
-var dispositivoSchema = new mongoose.Schema({
+const dispositivoSchema = new mongoose.Schema({
     nome: String,
     mqttClientId: String,
     idTrigger: String,

@@ -7,7 +7,7 @@ class NexmoSmsApi {
 
     /**
      * Envia o SMS para o destinatário com o texto indicado
-     * 
+     *
      * @param destinatario telefone do destinatario
      * @param texto conteudo
      * @param configuracao Configuracao para envio de SMS

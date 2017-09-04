@@ -16,7 +16,7 @@ class EventoApi {
 
     /**
      * Executa a ação relacionada ao evento
-     * 
+     *
      * @param evento a ser executado
      */
     public executarEvento(evento: IEvento) {
@@ -27,7 +27,7 @@ class EventoApi {
 
     private enviarSMS(evento: IEvento) {
         let smsApi = this.smsApi;
-        Configuracao.find({'tipo' : 'sms'}, function (err, configuracoes: Array<Configuracao>) {
+        Configuracao.find({ tipo: 'sms' }, function (err, configuracoes: Array<Configuracao>) {
             if (err) {
                 console.error('Falha ao buscar configuracao de SMS, erro: ' + err);
             }

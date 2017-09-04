@@ -4,6 +4,6 @@ interface IDispositivo {
     mqttClientId: String;
     idTrigger: String;
     ativo: Boolean;
-};
+}
 
 export = IDispositivo;

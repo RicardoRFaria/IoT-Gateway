@@ -6,6 +6,6 @@ interface ITrigger {
     nome: String;
     eventosRelacionados: Array<IEvento>;
     operacao: IOperacao;
-};
+}
 
 export = ITrigger;

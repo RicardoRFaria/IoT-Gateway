@@ -12,7 +12,7 @@ class TriggerApi {
             res.status(400).send('Trigger não recebida.');
             return;
         }
-        Trigger.find({_id : id}, function (err, triggers: Array<Trigger>) {
+        Trigger.find({ _id: id }, function (err, triggers: Array<Trigger>) {
             if (err) {
                 res.status(500).send('Falha ao buscar trigger com id: ' + id + ', erro: ' + err);
                 return;
@@ -31,7 +31,7 @@ class TriggerApi {
             res.status(400).send('Trigger não recebida.');
             return;
         }
-        Trigger.remove({_id : id}, function (err) {
+        Trigger.remove({ _id: id }, function (err) {
             if (err) {
                 res.status(500).send('Não foi possível excluir trigger com id: ' + id + ', erro: ' + err);
                 return;
@@ -81,7 +81,7 @@ class TriggerApi {
                 res.status(500).send('Falha ao editar trigger' + err);
                 return;
             }
-            
+
             triggerCarregada.nome = trigger.nome;
             triggerCarregada.eventosRelacionados = trigger.eventosRelacionados;
             triggerCarregada.operacao = trigger.operacao;

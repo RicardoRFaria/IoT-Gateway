@@ -5,6 +5,6 @@ interface IOperacao {
     valor: any;
     valorInicial: number;
     valorFinal: number;
-};
+}
 
 export = IOperacao;

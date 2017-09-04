@@ -1,6 +1,6 @@
-import mongoose = require("mongoose");
+import mongoose = require('mongoose');
 
-var configuracaoSchema = new mongoose.Schema({
+const configuracaoSchema = new mongoose.Schema({
     tipo: String,
     apikey: String,
     apisecret: String,

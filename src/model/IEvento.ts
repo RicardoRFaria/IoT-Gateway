@@ -4,6 +4,6 @@ interface IEvento {
     tipo: TIPO_EVENTO;
     destinatario: String;
     mensagem: String;
-};
+}
 
 export = IEvento;

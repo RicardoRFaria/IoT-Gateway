@@ -78,7 +78,7 @@ class DispositivoApi {
                 res.status(500).send('Falha ao editar dispositivo' + err);
                 return;
             }
-            
+
             dispositivoCarregado.nome = dispositivo.nome;
             dispositivoCarregado.mqttClientId = dispositivo.mqttClientId;
             dispositivoCarregado.idTrigger = dispositivo.idTrigger;

@@ -1,5 +1,4 @@
 let dbconfig = {
-    //using ascoltatore
     type: 'mongo',
     url: 'mongodb://admin@localhost:27017/',
     pubsubCollection: 'mqtt',

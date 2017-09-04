@@ -25,7 +25,7 @@ class MensageriaApi {
                 console.info('Evento atendido, prossegue.');
                 trigger.eventosRelacionados.forEach(eventoRelacionado => {
                     console.log('ID do evento relacionado');
-                    console.log(eventoRelacionado.id)
+                    console.log(eventoRelacionado.id);
                     console.log('Executa a acao');
                     this.eventoApi.executarEvento(eventoRelacionado);
                 });
@@ -35,14 +35,14 @@ class MensageriaApi {
         });
     }
 
-    private getPipelineDeAcoes(clientId: String, conteudo: any) : void {
+    private getPipelineDeAcoes(clientId: String, conteudo: any): void {
         if (clientId === undefined) {
             console.error('MQTT Cliend ID recebido é undefined.');
             return;
         }
         console.info('Consultando dispositivos com MQTT Client ID: ' + clientId);
         let mensageriaApi = this;
-        let consultaClientId = {$or:[ {'mqttClientId':clientId}, {'mqttClientId': ID_CLIENT_WILDCARD }]};
+        let consultaClientId = { $or: [{ mqttClientId: clientId }, { mqttClientId: ID_CLIENT_WILDCARD }] };
         Dispositivo.find(consultaClientId, function (err, dispositivos: Array<Dispositivo>) {
             if (err) {
                 console.log('Erro ao carregar o client com MQTT ID: ' + clientId + ', erro: ' + err);
@@ -55,7 +55,7 @@ class MensageriaApi {
             console.info('Encontrado ' + dispositivos.length + ' dispositivo para o MQTT ID:' + clientId);
             dispositivos.forEach(dispositivo => {
                 console.info('Processando dispositivo com nome: ' + dispositivo.nome);
-                Trigger.find({'_id': dispositivo.idTrigger}, function (err, triggers: Array<Trigger>) {
+                Trigger.find({ _id: dispositivo.idTrigger }, function (err, triggers: Array<Trigger>) {
                     if (err) {
                         console.log('Erro ao carregar as triggers relacionadas ao cliente: ' + clientId + ', erro: ' + err);
                         return;
@@ -64,15 +64,11 @@ class MensageriaApi {
                         console.log('Mensagem recebida de um client sem ações configuradas, cliend id: ' + clientId);
                         return;
                     }
-                    mensageriaApi.avaliarEExecutarPipelineDeAcoes(triggers, conteudo)
+                    mensageriaApi.avaliarEExecutarPipelineDeAcoes(triggers, conteudo);
                 });
-
             });
         });
-
     }
-
-    
 }
 
 export default MensageriaApi;

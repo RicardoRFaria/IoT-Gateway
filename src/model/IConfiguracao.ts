@@ -4,6 +4,6 @@ interface IConfiguracao {
     apikey: String;
     apisecret: String;
     virtualnumber: String;
-};
+}
 
 export = IConfiguracao;

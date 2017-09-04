@@ -5,12 +5,12 @@ class MotorDeOperacoes {
 
     /**
      * Avalia se o valor recebido, esta dentro dos parametros da operacao em questão
-     * 
+     *
      * @param operacao a ser avaliada
      * @param valor qualquer valor a ser avaliado
      * @return boolean informando se a operação se a operação pode prosseguir
      */
-    public prossegue (operacao: IOperacao, valor: any) {
+    public prossegue(operacao: IOperacao, valor: any) {
         console.log('Motor de operações atingido');
         console.log('tipo: ' + operacao.tipo);
         console.log('valor: ' + operacao.valor);

@@ -6,7 +6,7 @@ import Configuracao from '../model/Configuracao';
 class ConfiguracaoApi {
 
     public get(tipo: String, res: any): void {
-        Configuracao.find({'tipo' : tipo}, function (err, configuracao: Array<Configuracao>) {
+        Configuracao.find({ tipo: tipo }, function (err, configuracao: Array<Configuracao>) {
             if (err) {
                 res.status(500).send('Falha ao buscar configuracao com tipo: ' + tipo + ', erro: ' + err);
                 return;
@@ -22,8 +22,8 @@ class ConfiguracaoApi {
     public salvar(tipo: String, req: any, res: any): void {
         // Executar validação
         let configuracao = req.body;
-        Configuracao.remove({'tipo' : tipo}).exec();
-        
+        Configuracao.remove({ tipo: tipo }).exec();
+
         let configuracaoPersistencia = new Configuracao(configuracao);
         configuracaoPersistencia.save(function (err, resultado) {
             if (err) {

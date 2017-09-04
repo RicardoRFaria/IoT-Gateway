@@ -7,7 +7,7 @@ describe('inicia server', () => {
   });
 
   it('delays the greeting by 2 seconds', () => {
-    
+    console.log('teste');
   });
 
 });

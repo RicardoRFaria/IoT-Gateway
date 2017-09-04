@@ -1,6 +1,6 @@
-import mongoose = require("mongoose");
+import mongoose = require('mongoose');
 
-var eventoSchema = new mongoose.Schema({
+const eventoSchema = new mongoose.Schema({
     tipo: Number,
     destinatario: String,
     mensagem: String

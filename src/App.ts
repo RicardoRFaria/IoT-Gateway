@@ -19,7 +19,7 @@ class App {
   private triggerApi: TriggerApi;
   private dadosBasicosApi: DadosBasicosApi;
   private configuracaoApi: ConfiguracaoApi;
- 
+
   constructor() {
     this.express = express();
     this.middleware();
@@ -46,7 +46,6 @@ class App {
   // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
-    
 
     router.get('/dispositivo/:id', this.dispositivoApi.get);
     router.delete('/dispositivo/:id', this.dispositivoApi.excluir);

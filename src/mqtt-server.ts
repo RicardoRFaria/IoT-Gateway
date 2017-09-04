@@ -16,7 +16,7 @@ class MqttServer {
             console.log('client connected', client.id);
         });
 
-        // fired when a message is received
+        // Lançado quando um evento for recebido
         this.server.on('published', function (packet, client) {
             if (client === undefined) {
                 return;
