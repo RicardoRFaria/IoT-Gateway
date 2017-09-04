@@ -1,6 +1,7 @@
-import Trigger from '../model/Trigger';
 import EventoApi from './EventoApi';
+import Trigger from '../model/Trigger';
 import Dispositivo from '../model/Dispositivo';
+import HistoricoMensagem from '../model/HistoricoMensagem';
 
 import MotorDeOperacoes from '../acoes/MotorDeOperacoes';
 
@@ -14,7 +15,8 @@ class MensageriaApi {
         this.eventoApi = new EventoApi();
     }
 
-    public novaMensagem(clientId, conteudo: any): void {
+    public novaMensagem(clientId: String, conteudo: any): void {
+        this.persistirMensagem(clientId, conteudo);
         this.getPipelineDeAcoes(clientId, conteudo);
     }
 
@@ -68,6 +70,14 @@ class MensageriaApi {
                 });
             });
         });
+    }
+
+    private persistirMensagem(clientId: String, conteudo: any) {
+        new HistoricoMensagem({
+            idDispositivo: clientId,
+            valor: conteudo,
+            data: new Date()
+        }).save();
     }
 }
 
