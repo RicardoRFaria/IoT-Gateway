@@ -3,7 +3,7 @@ import mongoose = require('mongoose');
 const HistoricoMensagem = new mongoose.Schema({
     idDispositivo: String,
     valor: String,
-    data: Date,
+    data: Date
 });
 
 export default HistoricoMensagem;

@@ -23,11 +23,17 @@ class NexmoSmsApi {
             virtualNumber, destinatario, texto,
             (err, responseData) => {
                 if (err) {
-                    console.log(err);
-                } else {
+                    console.error(err);
+                    return;
+                }
+                let isSucesso = responseData.messages[0].status === 0;
+                if (isSucesso) {
                     console.info('SMS enviado com sucesso!');
                     console.info(responseData);
+                } else {
+                    console.error('Falha ao enviar SMS. Mensagem: ' + responseData.messages[0]['error-text']);
                 }
+                
             }
         );
     }
