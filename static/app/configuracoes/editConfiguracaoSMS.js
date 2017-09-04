@@ -5,6 +5,8 @@ angular
     controller: EditConfiguracaoSMS
   });
 
+const CODIGO_STATUS_NAO_EXISTE = 404;
+
 EditConfiguracaoSMS.$inject = ['ConfiguracaoService', '$stateParams', '$state', 'ModalUtil'];
 
 function EditConfiguracaoSMS(ConfiguracaoService, $stateParams, $state, ModalUtil) {
@@ -21,6 +23,12 @@ function EditConfiguracaoSMS(ConfiguracaoService, $stateParams, $state, ModalUti
   function carregarOuCriar() {
       ConfiguracaoService.get('sms').then(function (configuracaoExistente) {
         vm.configuracao = configuracaoExistente;
-      }, ModalUtil.mostrarErroPadraoPromise);
+      }, function (resultado) {
+        if (resultado.status === CODIGO_STATUS_NAO_EXISTE) {
+          vm.configuracao = {tipo: 'sms'};
+        } else {
+          ModalUtil.mostrarErroPadraoPromise(resultado);
+        }
+      });
   }
 }

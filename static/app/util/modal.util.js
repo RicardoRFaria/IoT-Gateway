@@ -89,7 +89,7 @@
          * @param razao da promise de falha
          */
         function mostrarErroPadraoPromise(razao) {
-            msgError(razao.data.message);
+            msgError(razao.data);
         }
     }
 })();

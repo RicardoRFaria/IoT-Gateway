@@ -19,12 +19,11 @@ Gateway para iteração com dispositivos de IoT desenvolvido em node.js e Typesc
 + `npm test:watch` - Inicia um watch que executa os testes sempre que algo for modificado
 
 ## Dependências
-MongoDb, pode ser baixado através de imagem docker e executado da seguinte forma:
++ `MongoDb` - Na versão mais atual
 
-```
-$ docker pull tutum/mongodb
-$ docker run -d -p 27017:27017 -p 28017:28017 -e MONGODB_PASS="iot-gateway" tutum/mongodb
-```
+## Configurando
+1. Editar arquivo `mongoose.ts` no path `src/config/mongoose.ts` com as credênciais do banco.
+2. Editar arquivo `mqtt-config.ts` no path `src/config/mqtt-config.ts` com as credênciais do banco.
 
 ## Executando a aplicação
 1. Execute o comando `npm run watch` em um console e deixe aberto
