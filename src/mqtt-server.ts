@@ -22,6 +22,7 @@ class MqttServer {
                 return;
             }
             let payloadLimpo = packet.payload.toString().replace(/^\s+|\s+$/gm, '');
+            console.log('_________________________________________________________');
             console.log('Cliente enviou mensagem com o conteúdo: ', payloadLimpo);
             apiMensagem.novaMensagem(client.id, payloadLimpo);
         });

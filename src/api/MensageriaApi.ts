@@ -62,7 +62,7 @@ class MensageriaApi {
             data: new Date()
         }).save();
         trigger.eventosRelacionados.forEach(eventoRelacionado => {
-            console.log('ID do evento relacionado: ' + eventoRelacionado._id + '. Executa a acao.');
+            console.log('ID do evento relacionado, triger com id: ' + trigger._id + '. Executa a acao.');
             this.eventoApi.executarEvento(eventoRelacionado);
         });
     }

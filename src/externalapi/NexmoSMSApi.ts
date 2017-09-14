@@ -26,10 +26,9 @@ class NexmoSmsApi {
                     console.error(err);
                     return;
                 }
-                let isSucesso = responseData.messages[0].status === 0;
+                let isSucesso = responseData.messages[0].status === '0';
                 if (isSucesso) {
                     console.info('SMS enviado com sucesso!');
-                    console.info(responseData);
                 } else {
                     console.error('Falha ao enviar SMS. Mensagem: ' + responseData.messages[0]['error-text']);
                 }
